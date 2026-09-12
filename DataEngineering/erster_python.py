@@ -78,3 +78,13 @@ print(wert_list)
 
 wert_list2: list = [i for i in range(10)]
 print(wert_list2)
+
+# tip 5
+name_list = ["tipi", "alex", "suse"]
+alter_list = [35, 30, 20, 40]  # 40 fällt weg
+
+personen = list(zip(name_list, alter_list))
+print(personen)
+
+
+# name_list, alter_list = personen.zip*
