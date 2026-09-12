@@ -88,3 +88,35 @@ print(personen)
 
 
 # name_list, alter_list = personen.zip*
+
+
+# Klassen
+class Auto:  # First letter is uppercase
+    def __init__(
+        self, motor: str = "elektro", anzahl_raeder: int = 4, status: str = "stop"
+    ):
+        self.motor: str = motor
+        self.anzahl_raeder: int = anzahl_raeder
+        self.status: str = status
+
+    def __str__(self):
+        return f"motor: {self.motor} raeder_anzahl: {self.anzahl_raeder} status: {self.status}"
+
+    def motorstart(self):
+        self.status = "Motor an"
+
+    def motorabschalten(self):
+        self.status = "Motor aus"
+
+
+auto1: Auto = Auto()  # wie java Constructor
+print(auto1)
+print(auto1.status)
+auto1.motorstart()
+print(auto1.status)
+Auto.motorabschalten(auto1)
+print(auto1.status)
+
+auto2: Auto = Auto()
+auto2.status = "fahren"
+print(auto2.status)
