@@ -72,7 +72,7 @@ print(f"height {width}. width {height}")
 
 wert_list: list = []
 for i in range(10):
-    wert_list.append(i)
+    wert_list.append(i)  # noqa: PERF402
 
 print(wert_list)
 
@@ -93,20 +93,45 @@ print(personen)
 # Klassen
 class Auto:  # First letter is uppercase
     def __init__(
-        self, motor: str = "elektro", anzahl_raeder: int = 4, status: str = "stop"
+        self,
+        marke: str = "VW",
+        motor: str = "elektro",
+        anzahl_raeder: int = 4,
+        status: str = "stop",
+        klimaanlage: str = "superkalt",
     ):
+        self.marke: str = marke
         self.motor: str = motor
         self.anzahl_raeder: int = anzahl_raeder
         self.status: str = status
+        self.__Klimaanlage: str = (
+            klimaanlage  # kann nicht von ausserhalb editiert werden
+        )
 
     def __str__(self):
-        return f"motor: {self.motor} raeder_anzahl: {self.anzahl_raeder} status: {self.status}"
+        return f"Marke: {self.marke} Motor: {self.motor} Räder Anzahl: {self.anzahl_raeder} Status: {self.status}"
 
     def motorstart(self):
         self.status = "Motor an"
 
     def motorabschalten(self):
         self.status = "Motor aus"
+
+
+class Sportwagen(Auto):
+    def __init__(
+        self,
+        marke: str = "Porsche",
+        motor: str = "Benziner",
+        anzahl_raeder: int = 4,
+        status: str = "stop",
+        klimaanlage: str = "superkalt",
+    ):
+        super().__init__(marke, motor, anzahl_raeder, status, klimaanlage)
+        self.farbe: str = "Silber"
+
+    def __str__(self):
+        return f"Marke: {self.marke} Motor: {self.motor} Räder Anzahl: {self.anzahl_raeder} Status: {self.status} Farbe: {self.farbe}"
 
 
 auto1: Auto = Auto()  # wie java Constructor
@@ -120,3 +145,10 @@ print(auto1.status)
 auto2: Auto = Auto()
 auto2.status = "fahren"
 print(auto2.status)
+
+auto3: Auto = Auto(marke="Tesla")
+print(auto3)
+
+auto4: Sportwagen = Sportwagen()
+print(auto4)
+print(auto4.farbe)
